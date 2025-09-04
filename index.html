@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoVault OS</title>
+  <meta name="description" content="Banco digital seguro, com jogos, Pix e investimentos" />
+
+  <!-- Fonte Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Firebase SDK (compatível com CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- Configuração do Firebase -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwa1oA6Pwk7idNq-Uu_nNfrasXMOhCrmk",
+      authDomain: "neobank-fit.firebaseapp.com",
+      databaseURL: "https://neobank-fit-default-rtdb.firebaseio.com",
+      projectId: "neobank-fit",
+      storageBucket: "neobank-fit.firebasestorage.app",
+      messagingSenderId: "1084469171756",
+      appId: "1:1084469171756:web:72696d6690053182752389"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
+  <!-- CSS Custom -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body class="font-sans h-full bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100 transition-all duration-500">
+
+  <!-- Container principal -->
+  <div id="app" class="min-h-screen flex flex-col"></div>
+  <div id="toast" class="toast">Operação realizada!</div>
+
+  <!-- Scripts - ORDEM CORRETA -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/pix.js"></script>
+  <script src="js/transactions.js"></script>
+  <script src="js/investments.js"></script>
+  <script src="js/card.js"></script>
+  <script src="js/games.js"></script>
+</body>
+</html>
