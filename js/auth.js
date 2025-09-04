@@ -1,12 +1,12 @@
-// auth.js - NeoVault OS
+// auth.js
 function showLoginScreen() {
   const app = document.getElementById('app');
   if (!app) return;
+
   app.innerHTML = `
     <div class="container">
       <div class="text-center mb-8">
-        <img src="img/logo.svg" alt="NeoVault OS" class="w-16 h-16 mx-auto mb-3" />
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent">NeoVault OS</h1>
+        <h1 class="text-3xl font-bold text-green-600">NeoVault OS</h1>
       </div>
       <div class="card">
         <form id="loginForm" class="space-y-4">
@@ -24,18 +24,20 @@ function showLoginScreen() {
       </div>
     </div>
   `;
+
   document.getElementById('loginForm').onsubmit = handleLogin;
   document.getElementById('btnRegister').onclick = showRegisterScreen;
-  setTimeout(() => lucide.createIcons(), 100);
+  lucide.createIcons();
 }
 
 function showRegisterScreen() {
   const app = document.getElementById('app');
   if (!app) return;
+
   app.innerHTML = `
     <div class="container">
       <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent">Criar Conta</h1>
+        <h1 class="text-3xl font-bold text-green-600">Criar Conta</h1>
       </div>
       <div class="card">
         <form id="registerForm" class="space-y-4">
@@ -53,9 +55,10 @@ function showRegisterScreen() {
       </div>
     </div>
   `;
+
   document.getElementById('registerForm').onsubmit = handleRegister;
   document.getElementById('btnBack').onclick = showLoginScreen;
-  setTimeout(() => lucide.createIcons(), 100);
+  lucide.createIcons();
 }
 
 function handleLogin(e) {
@@ -73,6 +76,10 @@ function handleLogin(e) {
       } else {
         alert('Usuário ou senha incorretos.');
       }
+    })
+    .catch(err => {
+      console.error('Erro ao fazer login:', err);
+      alert('Erro ao fazer login. Tente novamente.');
     });
 }
 
@@ -89,7 +96,6 @@ function handleRegister(e) {
       }
 
       const iban = `OSPT${Math.floor(Math.random() * 9000000000000000 + 1000000000000000)}`;
-      const email = `${username}@neovault.com`;
 
       const newUser = {
         username,
@@ -102,10 +108,8 @@ function handleRegister(e) {
         xp: 0,
         level: 1,
         iban: iban,
-        email: email,
         transactions: [],
         investments: [],
-        achievements: [],
         createdAt: new Date().toISOString()
       };
 
@@ -114,6 +118,10 @@ function handleRegister(e) {
           localStorage.setItem('currentUser', username);
           showToast('Conta criada! +100 OSD!');
           loadDashboard(username);
+        })
+        .catch(err => {
+          console.error('Erro ao criar conta:', err);
+          alert('Erro ao criar conta.');
         });
     });
 }
